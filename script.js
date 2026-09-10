@@ -47,7 +47,7 @@ const infoSections=[
 ["Problèmes fréquents",`Pas/signal faible sur drop : vérifier raccordement au tap, filtre, mesure au tap et pertes (1–1,5 dBmV/10 m normales), remplacer préventivement les connecteurs. Pas Internet : contrôler LED, MAC/status, WAN-IP et les valeurs RX/TX. Mauvais speedtest : utiliser Companion app, désactiver VPN, tester plusieurs appareils et contrôler le 5 GHz / booster.`],
 ["Airbox",`TCL MW63VK Airbox Love Pack : client sans services ayant besoin d’une solution de secours. My Comfort Service Pack : My Comfort Service/VIP et certains B2B. Backup B2B Pack : B2B sans Site ID et numéro CRM dans l’ancien flow ou repair.`],
 ["B2B Layer 2",`Après activation, le modem est automatiquement en Bridge. Un autre team Orange installe le routeur à une autre date. Le modem ne diffuse pas de WiFi, la 4G backup n’est pas destinée à ce produit et le speedtest Companion n’est pas possible. Quality Check toujours obligatoire.`],
-["Contacts",`Dispatch : 03 610 10 79<br>Provisioning : 0800 85 032`]
+["Contacts",`Provisioning : 0800 85 032`]
 ];
 
 function show(id){screens.forEach(s=>document.getElementById(s).classList.toggle("active",s===id));window.scrollTo(0,0)}
@@ -71,7 +71,7 @@ function renderInfo(filter=""){let h="";infoSections.forEach(s=>{if(filter && !s
 document.getElementById("search").oninput=e=>renderInfo(e.target.value.toLowerCase());
 
 document.getElementById("copyReport").onclick=async()=>{
- let out=`APK GROUP — ${lang==="fr"?"RAPPORT D’INTERVENTION":"INTERVENTIERAPPORT"}\n\n`;
+ let out=`APK CENTRE — ${lang==="fr"?"RAPPORT D’INTERVENTION":"INTERVENTIERAPPORT"}\n\n`;
  document.querySelectorAll("#reportForm .panel").forEach(p=>{let title=p.querySelector("h2")?.textContent; if(title) out+=title+"\n";p.querySelectorAll("input[type=checkbox]:checked,input[type=radio]:checked").forEach(i=>out+="• "+(i.closest("label")?.innerText||i.value)+"\n");out+="\n"});
  try{await navigator.clipboard.writeText(out);toast(lang==="fr"?"Résultat copié":"Resultaat gekopieerd")}catch(e){prompt("Copier le résultat :",out)}
 };

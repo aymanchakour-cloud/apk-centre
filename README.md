@@ -1,4 +1,4 @@
-# APK Group Web — version complète
+# APK Centre Web — version complète
 
 Web-app responsive basée sur les 3 pages de référence fournies :
 - Rapport d’intervention
