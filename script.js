@@ -71,14 +71,21 @@ function renderInfo(filter=""){let h="";infoSections.forEach(s=>{if(filter && !s
 document.getElementById("search").oninput=e=>renderInfo(e.target.value.toLowerCase());
 
 document.getElementById("copyReport").onclick=async()=>{
- let lines=[];
- document.querySelectorAll("#reportForm input[type=checkbox]:checked,#reportForm input[type=radio]:checked").forEach(i=>{
-   const label=i.closest("label");
-   const text=(label?.querySelector("span")?.innerText||label?.innerText||i.value||"").trim();
-   if(text) lines.push("• "+text);
- });
- const out=lines.join("\n");
- try{await navigator.clipboard.writeText(out);toast(lang==="fr"?"Résultat copié":"Resultaat gekopieerd")}catch(e){prompt("Copier le résultat :",out)}
+  const lines=[];
+  document.querySelectorAll("#reportForm input:checked").forEach(input=>{
+    const label=input.closest("label");
+    const span=label?.querySelector("span");
+    // Copy only the actual selected answer text, never section/question headings.
+    const value=(span?.textContent||"").replace(/\\s+/g," ").trim();
+    if(value) lines.push("• "+value);
+  });
+  const out=lines.join("\n");
+  try{
+    await navigator.clipboard.writeText(out);
+    toast(lang==="fr"?"Résultat copié":"Resultaat gekopieerd");
+  }catch(e){
+    prompt("Copier le résultat :",out);
+  }
 };
 function toast(t){let x=document.getElementById("toast");x.textContent=t;x.style.display="block";setTimeout(()=>x.style.display="none",1800)}
 renderReport();renderChecklist();renderInfo();
