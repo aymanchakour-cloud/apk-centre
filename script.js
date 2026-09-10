@@ -71,8 +71,13 @@ function renderInfo(filter=""){let h="";infoSections.forEach(s=>{if(filter && !s
 document.getElementById("search").oninput=e=>renderInfo(e.target.value.toLowerCase());
 
 document.getElementById("copyReport").onclick=async()=>{
- let out=`APK CENTRE — ${lang==="fr"?"RAPPORT D’INTERVENTION":"INTERVENTIERAPPORT"}\n\n`;
- document.querySelectorAll("#reportForm .panel").forEach(p=>{let title=p.querySelector("h2")?.textContent; if(title) out+=title+"\n";p.querySelectorAll("input[type=checkbox]:checked,input[type=radio]:checked").forEach(i=>out+="• "+(i.closest("label")?.innerText||i.value)+"\n");out+="\n"});
+ let lines=[];
+ document.querySelectorAll("#reportForm input[type=checkbox]:checked,#reportForm input[type=radio]:checked").forEach(i=>{
+   const label=i.closest("label");
+   const text=(label?.querySelector("span")?.innerText||label?.innerText||i.value||"").trim();
+   if(text) lines.push("• "+text);
+ });
+ const out=lines.join("\n");
  try{await navigator.clipboard.writeText(out);toast(lang==="fr"?"Résultat copié":"Resultaat gekopieerd")}catch(e){prompt("Copier le résultat :",out)}
 };
 function toast(t){let x=document.getElementById("toast");x.textContent=t;x.style.display="block";setTimeout(()=>x.style.display="none",1800)}
