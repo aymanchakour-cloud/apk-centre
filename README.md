@@ -1,1 +1,13 @@
-# apk-centre
+# APK Group Web — version complète
+
+Web-app responsive basée sur les 3 pages de référence fournies :
+- Rapport d’intervention
+- Checklist d’installation
+- Infos utiles
+
+La navigation est mobile-first, avec FR/NL, checklist interactive, recherche dans les infos utiles et copie du rapport.
+
+## Publication
+Déposer les fichiers à la racine d’un dépôt GitHub puis activer GitHub Pages sur `main` / root.
+
+Les contenus techniques ont été repris depuis les pages de référence fournies par l’utilisateur. Vérifier les procédures internes avant mise en production.

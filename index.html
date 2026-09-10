@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#082b4a">
+<title>APK Group</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">APK <span>GROUP</span></div>
+  <button id="menuBtn" class="menu">☰</button>
+</header>
+
+<main id="app">
+<section id="home" class="screen active">
+  <div class="hero"><h1>Bienvenue</h1><p>Choisissez votre langue</p>
+    <div class="langs"><button id="nl" class="lang">Nederlands</button><button id="fr" class="lang active">Français</button></div>
+  </div>
+  <div class="homecards">
+    <button class="homecard orange" data-go="report"><b>📝</b><strong data-fr="Rapport d’intervention" data-nl="Interventierapport">Rapport d’intervention</strong><small data-fr="Encoder et copier le rapport" data-nl="Rapport invullen en kopiëren">Encoder et copier le rapport</small><i>›</i></button>
+    <button class="homecard blue" data-go="checklist"><b>☑</b><strong data-fr="Checklist installation" data-nl="Installatie checklist">Checklist installation</strong><small data-fr="Contrôler chaque étape" data-nl="Elke stap controleren">Contrôler chaque étape</small><i>›</i></button>
+    <button class="homecard gray" data-go="info"><b>ⓘ</b><strong data-fr="Infos utiles" data-nl="Nuttige info">Infos utiles</strong><small data-fr="Procédures et mesures de signal" data-nl="Procedures en signaalmetingen">Procédures et mesures de signal</small><i>›</i></button>
+  </div>
+</section>
+
+<section id="report" class="screen">
+  <button class="back">← Accueil</button><h1 data-fr="Rapport d’intervention" data-nl="Interventierapport">Rapport d’intervention</h1>
+  <div id="reportForm"></div><button id="copyReport" class="primary">Copier le résultat</button>
+</section>
+
+<section id="checklist" class="screen">
+  <button class="back">← Accueil</button><h1 data-fr="Checklist d’installation" data-nl="Installatie checklist">Checklist d’installation</h1>
+  <div id="checkForm"></div><div class="progress"><span id="progressBar"></span></div><p id="progressText"></p>
+</section>
+
+<section id="info" class="screen">
+  <button class="back">← Accueil</button><h1 data-fr="Infos utiles" data-nl="Nuttige info">Infos utiles</h1>
+  <input id="search" class="search" placeholder="Rechercher une procédure, mesure, problème…">
+  <div id="infoContent"></div>
+</section>
+</main>
+<footer>© 2026 APK Group</footer>
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
