@@ -8,9 +8,13 @@
 <link rel="stylesheet" href="styles.css">
 
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" type="image/png" href="assets/apk-centre-icon.png">
-  <link rel="apple-touch-icon" href="assets/apk-centre-icon.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/apk-centre-icon-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apk-centre-icon-180.png">
   <meta name="theme-color" content="#e30613">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="APK Centre">
 
 </head>
 <body>
@@ -50,5 +54,6 @@
 <footer>© 2026 APK Centre</footer>
 <div id="toast"></div>
 <script src="script.js?v=3"></script>
+<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./service-worker.js");</script>
 </body>
 </html>

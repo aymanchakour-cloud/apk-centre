@@ -3,12 +3,26 @@
   "short_name": "APK Centre",
   "description": "Outil APK Centre — rapport, checklist et informations utiles.",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#e30613",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "assets/apk-centre-icon.png",
+      "src": "assets/apk-centre-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/apk-centre-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/apk-centre-icon-1024.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any maskable"

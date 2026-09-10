@@ -15,3 +15,7 @@ Les contenus techniques ont été repris depuis les pages de référence fournie
 
 ### Icône
 L'icône APK Centre est intégrée via `manifest.webmanifest` et peut être utilisée lors de l'ajout à l'écran d'accueil.
+
+
+## Icône
+L’icône APK Centre utilise le visuel fourni et est configurée pour favicon, iOS et PWA Android.
