@@ -11,3 +11,7 @@ La navigation est mobile-first, avec FR/NL, checklist interactive, recherche dan
 Déposer les fichiers à la racine d’un dépôt GitHub puis activer GitHub Pages sur `main` / root.
 
 Les contenus techniques ont été repris depuis les pages de référence fournies par l’utilisateur. Vérifier les procédures internes avant mise en production.
+
+
+### Icône
+L'icône APK Centre est intégrée via `manifest.webmanifest` et peut être utilisée lors de l'ajout à l'écran d'accueil.
