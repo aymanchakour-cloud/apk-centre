@@ -1,12 +1,13 @@
-const CACHE_NAME = "apk-centre-v10";
+const CACHE_NAME = "apk-centre-v11";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
-  "./script.js?v=3",
+  "./script.js?v=11",
   "./manifest.webmanifest",
   "./assets/apk-centre-icon-192.png",
-  "./assets/apk-centre-icon-512.png"
+  "./assets/apk-centre-icon-512.png",
+  "./assets/logo-apk-group.png"
 ];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));

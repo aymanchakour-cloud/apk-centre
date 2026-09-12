@@ -23,3 +23,6 @@ L’icône APK Centre utilise le visuel fourni et est configurée pour favicon, 
 
 ## Streamer
 La case « Streamer » contient directement les deux listes de chaînes FR et NL fournies par l'utilisateur, avec recherche par numéro ou nom.
+
+
+Logo APK GROUP intégré : assets/logo-apk-group.png.
