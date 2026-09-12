@@ -1,4 +1,4 @@
-const CACHE_NAME = "apk-centre-v9";
+const CACHE_NAME = "apk-centre-v10";
 const ASSETS = [
   "./",
   "./index.html",
