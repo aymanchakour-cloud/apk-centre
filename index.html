@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#082b4a">
 <title>APK Centre</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=6">
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" sizes="48x48" href="assets/apk-centre-icon-48.png">
@@ -20,7 +20,7 @@
 <body>
 <header class="topbar">
   <div class="brand"><span class="brandMark">APK</span><span class="brandName">CENTRE</span></div>
-  <button id="menuBtn" class="menu">☰</button>
+  <button id="menuBtn" class="menu" type="button" aria-label="Ouvrir le menu">☰</button>
 </header>
 
 <main id="app">
@@ -29,7 +29,6 @@
     <div class="langs"><button id="nl" class="lang">Nederlands</button><button id="fr" class="lang active">Français</button></div>
   </div>
   <div class="homecards">
-    <button class="homecard purple" data-go="channels"><b>📺</b><strong data-fr="Chaînes du streamer" data-nl="Kanalen van de streamer">Chaînes du streamer</strong><small data-fr="Retrouver les chaînes et plateformes" data-nl="Kanalen en platformen bekijken">Retrouver les chaînes et plateformes</small><i>›</i></button>
     <button class="homecard orange" data-go="report"><b>📝</b><strong data-fr="Rapport d’intervention" data-nl="Interventierapport">Rapport d’intervention</strong><small data-fr="Encoder et copier le rapport" data-nl="Rapport invullen en kopiëren">Encoder et copier le rapport</small><i>›</i></button>
     <button class="homecard blue" data-go="checklist"><b>☑</b><strong data-fr="Checklist installation" data-nl="Installatie checklist">Checklist installation</strong><small data-fr="Contrôler chaque étape" data-nl="Elke stap controleren">Contrôler chaque étape</small><i>›</i></button>
     <button class="homecard gray" data-go="info"><b>ⓘ</b><strong data-fr="Infos utiles" data-nl="Nuttige info">Infos utiles</strong><small data-fr="Procédures et mesures de signal" data-nl="Procedures en signaalmetingen">Procédures et mesures de signal</small><i>›</i></button>
@@ -48,8 +47,8 @@
 
 <section id="channels" class="screen">
   <button class="back">← Accueil</button>
-  <h1 data-fr="Chaînes du streamer" data-nl="Kanalen van de streamer">Chaînes du streamer</h1>
-  <p class="screenIntro" data-fr="Retrouvez ici les différentes chaînes et plateformes du streamer." data-nl="Hier vindt u de verschillende kanalen en platformen van de streamer.">Retrouvez ici les différentes chaînes et plateformes du streamer.</p>
+  <h1>Chaînes du streamer</h1>
+  <p class="screenIntro">Retrouvez ici les chaînes et plateformes du streamer.</p>
   <div id="channelsContent" class="channels-grid"></div>
 </section>
 
@@ -59,18 +58,22 @@
   <div id="infoContent"></div>
 </section>
 </main>
+
 <div id="menuBackdrop" class="menuBackdrop"></div>
 <aside id="sideMenu" class="sideMenu" aria-hidden="true">
-  <div class="sideMenuHeader"><strong>APK CENTRE</strong><button id="closeMenu" class="closeMenu" aria-label="Fermer">×</button></div>
-  <button class="menuLink" data-menu-go="home">⌂ <span>Accueil</span></button>
-  <button class="menuLink" data-menu-go="report">📝 <span>Rapport d’intervention</span></button>
-  <button class="menuLink" data-menu-go="checklist">☑ <span>Checklist installation</span></button>
-  <button class="menuLink" data-menu-go="channels">📺 <span>Chaînes du streamer</span></button>
-  <button class="menuLink" data-menu-go="info">ⓘ <span>Infos utiles</span></button>
+  <div class="sideMenuTop">
+    <strong>MENU APK CENTRE</strong>
+    <button id="closeMenu" type="button" aria-label="Fermer">×</button>
+  </div>
+  <button class="menuItem" data-menu-go="home">🏠 <span>Accueil</span></button>
+  <button class="menuItem" data-menu-go="report">📝 <span>Rapport d’intervention</span></button>
+  <button class="menuItem" data-menu-go="checklist">☑️ <span>Checklist installation</span></button>
+  <button class="menuItem menuItemChannels" data-menu-go="channels">📺 <span>Chaînes du streamer</span></button>
+  <button class="menuItem" data-menu-go="info">ⓘ <span>Infos utiles</span></button>
 </aside>
-<footer>© 2026 APK Centre — by Chakour ayman</footer>
+<footer>© 2026 APK Centre</footer>
 <div id="toast"></div>
-<script src="script.js?v=3"></script>
+<script src="script.js?v=6"></script>
 <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./service-worker.js");</script>
 </body>
 </html>

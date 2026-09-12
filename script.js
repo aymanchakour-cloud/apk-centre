@@ -1,11 +1,13 @@
 let lang="fr";const screens=["home","report","checklist","channels","info"];
 const fr={};const nl={};
+
+// Modifiez les URL ci-dessous avec les vrais liens des chaînes du streamer.
 const channels=[
- {name:"YouTube",icon:"▶",url:"https://www.youtube.com/",desc:"Vidéos et contenus"},
- {name:"Twitch",icon:"T",url:"https://www.twitch.tv/",desc:"Lives et rediffusions"},
- {name:"TikTok",icon:"♪",url:"https://www.tiktok.com/",desc:"Clips et vidéos courtes"},
- {name:"Instagram",icon:"◎",url:"https://www.instagram.com/",desc:"Actualités et publications"},
- {name:"Facebook",icon:"f",url:"https://www.facebook.com/",desc:"Page et directs"}
+  {name:"YouTube",icon:"▶️",url:"https://www.youtube.com/",desc:"Vidéos et contenus"},
+  {name:"Twitch",icon:"🎮",url:"https://www.twitch.tv/",desc:"Lives et rediffusions"},
+  {name:"TikTok",icon:"♪",url:"https://www.tiktok.com/",desc:"Clips et vidéos courtes"},
+  {name:"Instagram",icon:"📸",url:"https://www.instagram.com/",desc:"Publications et actualités"},
+  {name:"Facebook",icon:"f",url:"https://www.facebook.com/",desc:"Page et directs"}
 ];
 const reportGroups=[
 ["Statut de l’intervention",["Installation OK","Annulation","Réparation","Site survey"]],
@@ -62,17 +64,27 @@ document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>show(b.dataset.g
 document.querySelectorAll(".back").forEach(b=>b.onclick=()=>show("home"));
 const sideMenu=document.getElementById("sideMenu");
 const menuBackdrop=document.getElementById("menuBackdrop");
-function openMenu(){sideMenu.classList.add("open");menuBackdrop.classList.add("open");sideMenu.setAttribute("aria-hidden","false");}
-function closeMenu(){sideMenu.classList.remove("open");menuBackdrop.classList.remove("open");sideMenu.setAttribute("aria-hidden","true");}
-document.getElementById("menuBtn").onclick=openMenu;
-document.getElementById("closeMenu").onclick=closeMenu;
-menuBackdrop.onclick=closeMenu;
-document.querySelectorAll("[data-menu-go]").forEach(b=>b.onclick=()=>{show(b.dataset.menuGo);closeMenu();});
+const menuBtn=document.getElementById("menuBtn");
+const closeMenuBtn=document.getElementById("closeMenu");
 
-function renderChannels(){
- const el=document.getElementById("channelsContent"); if(!el)return;
- el.innerHTML=channels.map(c=>`<a class="channel-card" href="${c.url}" target="_blank" rel="noopener noreferrer"><span class="channel-icon">${c.icon}</span><span class="channel-text"><strong>${c.name}</strong><small>${c.desc}</small></span><span class="channel-arrow">›</span></a>`).join("");
+function openSideMenu(){
+  if(!sideMenu)return;
+  sideMenu.classList.add("open");
+  menuBackdrop.classList.add("open");
+  sideMenu.setAttribute("aria-hidden","false");
 }
+function closeSideMenu(){
+  if(!sideMenu)return;
+  sideMenu.classList.remove("open");
+  menuBackdrop.classList.remove("open");
+  sideMenu.setAttribute("aria-hidden","true");
+}
+menuBtn?.addEventListener("click",openSideMenu);
+closeMenuBtn?.addEventListener("click",closeSideMenu);
+menuBackdrop?.addEventListener("click",closeSideMenu);
+document.querySelectorAll("[data-menu-go]").forEach(b=>{
+  b.addEventListener("click",()=>{show(b.dataset.menuGo);closeSideMenu();});
+});
 
 function setLang(x){lang=x;document.querySelectorAll(".lang").forEach(b=>b.classList.toggle("active",b.id===x));document.querySelectorAll("[data-fr]").forEach(e=>e.textContent=e.dataset[x]);renderReport();renderChecklist();renderChannels();renderInfo();}
 document.getElementById("fr").onclick=()=>setLang("fr");document.getElementById("nl").onclick=()=>setLang("nl");
@@ -87,6 +99,17 @@ function renderChecklist(){
  let arr=checklist[lang];let h="";arr.forEach((s,si)=>{h+=`<details class="info-section" open><summary>${s[0]}</summary><div class="inside checks">${s[1].map((x,i)=>`<label class="check"><input type="checkbox" class="task"><span>${x}</span></label>`).join("")}</div></details>`});document.getElementById("checkForm").innerHTML=h;document.querySelectorAll(".task").forEach(x=>x.onchange=updateProgress);updateProgress();
 }
 function updateProgress(){let all=[...document.querySelectorAll(".task")],done=all.filter(x=>x.checked).length,p=all.length?done/all.length*100:0;document.getElementById("progressBar").style.width=p+"%";document.getElementById("progressText").textContent=`${done} / ${all.length} ${lang==="fr"?"éléments validés":"items voltooid"}`}
+
+function renderChannels(){
+  const box=document.getElementById("channelsContent");
+  if(!box)return;
+  box.innerHTML=channels.map(c=>`
+    <a class="channel-card" href="${c.url}" target="_blank" rel="noopener noreferrer">
+      <span class="channel-icon">${c.icon}</span>
+      <span class="channel-text"><strong>${c.name}</strong><small>${c.desc}</small></span>
+      <span class="channel-arrow">›</span>
+    </a>`).join("");
+}
 
 function renderInfo(filter=""){let h="";infoSections.forEach(s=>{if(filter && !s[0].toLowerCase().includes(filter)&&!s[1].toLowerCase().includes(filter))return;h+=`<details class="info-section" open><summary>${s[0]}</summary><div class="inside">${s[1]}</div></details>`});document.getElementById("infoContent").innerHTML=h}
 document.getElementById("search").oninput=e=>renderInfo(e.target.value.toLowerCase());

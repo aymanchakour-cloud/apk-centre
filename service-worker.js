@@ -1,9 +1,9 @@
-const CACHE_NAME = "apk-centre-v5";
+const CACHE_NAME = "apk-centre-v6";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css",
-  "./script.js?v=3",
+  "./styles.css?v=6",
+  "./script.js?v=6",
   "./manifest.webmanifest",
   "./assets/apk-centre-icon-192.png",
   "./assets/apk-centre-icon-512.png"
