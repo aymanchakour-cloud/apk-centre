@@ -20,16 +20,8 @@
 <body>
 <header class="topbar">
   <div class="brand"><span class="brandMark">APK</span><span class="brandName">CENTRE</span></div>
-  <button id="menuBtn" class="menu" aria-label="Menu">☰</button>
+  <button id="menuBtn" class="menu">☰</button>
 </header>
-<nav id="sideMenu" class="side-menu" aria-label="Menu principal">
-  <button class="side-item" data-go="home">🏠 <span>Accueil</span></button>
-  <button class="side-item" data-go="report">📝 <span>Rapport d’intervention</span></button>
-  <button class="side-item" data-go="checklist">☑ <span>Checklist</span></button>
-  <button class="side-item" data-go="info">ⓘ <span>Infos utiles</span></button>
-  <button class="side-item" data-go="channels">📺 <span>Liste des chaînes TV</span></button>
-</nav>
-<div id="menuBackdrop" class="menu-backdrop"></div>
 
 <main id="app">
 <section id="home" class="screen active">
@@ -40,7 +32,7 @@
     <button class="homecard orange" data-go="report"><b>📝</b><strong data-fr="Rapport d’intervention" data-nl="Interventierapport">Rapport d’intervention</strong><small data-fr="Encoder et copier le rapport" data-nl="Rapport invullen en kopiëren">Encoder et copier le rapport</small><i>›</i></button>
     <button class="homecard blue" data-go="checklist"><b>☑</b><strong data-fr="Checklist installation" data-nl="Installatie checklist">Checklist installation</strong><small data-fr="Contrôler chaque étape" data-nl="Elke stap controleren">Contrôler chaque étape</small><i>›</i></button>
     <button class="homecard gray" data-go="info"><b>ⓘ</b><strong data-fr="Infos utiles" data-nl="Nuttige info">Infos utiles</strong><small data-fr="Procédures et mesures de signal" data-nl="Procedures en signaalmetingen">Procédures et mesures de signal</small><i>›</i></button>
-    <button class="homecard tv" data-go="channels"><b>📺</b><strong data-fr="Liste des chaînes TV" data-nl="TV-zenderlijst">Liste des chaînes TV</strong><small data-fr="Orange TV Plus avec TV Streamer" data-nl="Orange TV Plus met TV Streamer">Orange TV Plus avec TV Streamer</small><i>›</i></button>
+    <button class="homecard streamer" data-go="streamer"><b>📺</b><strong data-fr="Streamer" data-nl="Streamer">Streamer</strong><small data-fr="Liste des chaînes TV FR et NL" data-nl="TV-zenderlijst FR en NL">Liste des chaînes TV FR et NL</small><i>›</i></button>
   </div>
 </section>
 
@@ -60,22 +52,29 @@
   <div id="infoContent"></div>
 </section>
 
-<section id="channels" class="screen">
+<section id="streamer" class="screen">
   <button class="back">← Accueil</button>
-  <h1 data-fr="Liste des chaînes TV" data-nl="TV-zenderlijst">Liste des chaînes TV</h1>
-  <p class="channels-subtitle" data-fr="Orange TV (Plus) avec TV Streamer" data-nl="Orange TV (Plus) met TV Streamer">Orange TV (Plus) avec TV Streamer</p>
-  <div class="channel-tabs">
-    <button id="channelFR" class="lang active">🇫🇷 Français</button>
-    <button id="channelNL" class="lang">🇳🇱 Nederlands</button>
+  <h1 data-fr="Streamer" data-nl="Streamer">Streamer</h1>
+  <p class="streamer-subtitle" data-fr="Orange TV (Plus) avec TV Streamer" data-nl="Orange TV (Plus) met TV Streamer">Orange TV (Plus) avec TV Streamer</p>
+
+  <div class="streamer-tabs">
+    <button id="streamerFR" class="lang active">🇫🇷 Français</button>
+    <button id="streamerNL" class="lang">🇳🇱 Nederlands</button>
   </div>
-  <input id="channelSearch" class="search" placeholder="Rechercher une chaîne ou un numéro…">
-  <div id="channelCount" class="channel-count"></div>
-  <div id="channelList" class="channel-list"></div>
+
+  <input id="streamerSearch" class="search" type="search"
+         placeholder="Rechercher une chaîne ou un numéro…"
+         data-placeholder-fr="Rechercher une chaîne ou un numéro…"
+         data-placeholder-nl="Zoek een zender of nummer…">
+
+  <div id="streamerCount" class="streamer-count"></div>
+  <div id="streamerList" class="streamer-list"></div>
 </section>
+
 </main>
 <footer>© 2026 APK Centre</footer>
 <div id="toast"></div>
-<script src="script.js?v=7"></script>
+<script src="script.js?v=8"></script>
 <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./service-worker.js");</script>
 </body>
 </html>
