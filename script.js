@@ -1,14 +1,5 @@
-let lang="fr";const screens=["home","report","checklist","channels","info"];
+let lang="fr";const screens=["home","report","checklist","info","channels"];
 const fr={};const nl={};
-
-// Modifiez les URL ci-dessous avec les vrais liens des chaînes du streamer.
-const channels=[
-  {name:"YouTube",icon:"▶️",url:"https://www.youtube.com/",desc:"Vidéos et contenus"},
-  {name:"Twitch",icon:"🎮",url:"https://www.twitch.tv/",desc:"Lives et rediffusions"},
-  {name:"TikTok",icon:"♪",url:"https://www.tiktok.com/",desc:"Clips et vidéos courtes"},
-  {name:"Instagram",icon:"📸",url:"https://www.instagram.com/",desc:"Publications et actualités"},
-  {name:"Facebook",icon:"f",url:"https://www.facebook.com/",desc:"Page et directs"}
-];
 const reportGroups=[
 ["Statut de l’intervention",["Installation OK","Annulation","Réparation","Site survey"]],
 ["Installation / matériel",["Modem fixé","Modem non fixé","TV box","ATA box","Test de vitesse effectué","Booster","Client ne souhaite pas de booster","Le client possède son propre réseau (sans fil)","Dropcâble installé","Câble drop installé sans percement.","Câble temporaire placé NIU → boîtier TV","Client VIP/B2B, Airbox ok","Problème d’activation"]],
@@ -62,31 +53,7 @@ const infoSections=[
 function show(id){screens.forEach(s=>document.getElementById(s).classList.toggle("active",s===id));window.scrollTo(0,0)}
 document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>show(b.dataset.go));
 document.querySelectorAll(".back").forEach(b=>b.onclick=()=>show("home"));
-const sideMenu=document.getElementById("sideMenu");
-const menuBackdrop=document.getElementById("menuBackdrop");
-const menuBtn=document.getElementById("menuBtn");
-const closeMenuBtn=document.getElementById("closeMenu");
-
-function openSideMenu(){
-  if(!sideMenu)return;
-  sideMenu.classList.add("open");
-  menuBackdrop.classList.add("open");
-  sideMenu.setAttribute("aria-hidden","false");
-}
-function closeSideMenu(){
-  if(!sideMenu)return;
-  sideMenu.classList.remove("open");
-  menuBackdrop.classList.remove("open");
-  sideMenu.setAttribute("aria-hidden","true");
-}
-menuBtn?.addEventListener("click",openSideMenu);
-closeMenuBtn?.addEventListener("click",closeSideMenu);
-menuBackdrop?.addEventListener("click",closeSideMenu);
-document.querySelectorAll("[data-menu-go]").forEach(b=>{
-  b.addEventListener("click",()=>{show(b.dataset.menuGo);closeSideMenu();});
-});
-
-function setLang(x){lang=x;document.querySelectorAll(".lang").forEach(b=>b.classList.toggle("active",b.id===x));document.querySelectorAll("[data-fr]").forEach(e=>e.textContent=e.dataset[x]);renderReport();renderChecklist();renderChannels();renderInfo();}
+function setLang(x){lang=x;document.querySelectorAll(".lang").forEach(b=>b.classList.toggle("active",b.id===x));document.querySelectorAll("[data-fr]").forEach(e=>e.textContent=e.dataset[x]);renderReport();renderChecklist();renderInfo();}
 document.getElementById("fr").onclick=()=>setLang("fr");document.getElementById("nl").onclick=()=>setLang("nl");
 
 function renderReport(){
@@ -99,17 +66,6 @@ function renderChecklist(){
  let arr=checklist[lang];let h="";arr.forEach((s,si)=>{h+=`<details class="info-section" open><summary>${s[0]}</summary><div class="inside checks">${s[1].map((x,i)=>`<label class="check"><input type="checkbox" class="task"><span>${x}</span></label>`).join("")}</div></details>`});document.getElementById("checkForm").innerHTML=h;document.querySelectorAll(".task").forEach(x=>x.onchange=updateProgress);updateProgress();
 }
 function updateProgress(){let all=[...document.querySelectorAll(".task")],done=all.filter(x=>x.checked).length,p=all.length?done/all.length*100:0;document.getElementById("progressBar").style.width=p+"%";document.getElementById("progressText").textContent=`${done} / ${all.length} ${lang==="fr"?"éléments validés":"items voltooid"}`}
-
-function renderChannels(){
-  const box=document.getElementById("channelsContent");
-  if(!box)return;
-  box.innerHTML=channels.map(c=>`
-    <a class="channel-card" href="${c.url}" target="_blank" rel="noopener noreferrer">
-      <span class="channel-icon">${c.icon}</span>
-      <span class="channel-text"><strong>${c.name}</strong><small>${c.desc}</small></span>
-      <span class="channel-arrow">›</span>
-    </a>`).join("");
-}
 
 function renderInfo(filter=""){let h="";infoSections.forEach(s=>{if(filter && !s[0].toLowerCase().includes(filter)&&!s[1].toLowerCase().includes(filter))return;h+=`<details class="info-section" open><summary>${s[0]}</summary><div class="inside">${s[1]}</div></details>`});document.getElementById("infoContent").innerHTML=h}
 document.getElementById("search").oninput=e=>renderInfo(e.target.value.toLowerCase());
@@ -132,4 +88,52 @@ document.getElementById("copyReport").onclick=async()=>{
   }
 };
 function toast(t){let x=document.getElementById("toast");x.textContent=t;x.style.display="block";setTimeout(()=>x.style.display="none",1800)}
-renderReport();renderChecklist();renderChannels();renderInfo();
+renderReport();renderChecklist();renderInfo();
+
+
+/* Liste des chaînes fournie par les captures Orange TV Plus */
+const channelsFR = [
+["1","RTBF La Une"],["2","RTBF Tipik"],["3","RTBF La Trois"],["4","RTL tvI"],["5","RTL club"],["6","RTL plug"],["7","TF1"],["8","France 2"],["9","France 3"],["10","TV Breizh"],["11","Nat Geo Channel FR"],["12","Arte Belgique"],["13","Main Local TV Channel"],["14","AB3"],["15","TV5 Monde"],["16","LN24"],["17","Science & Vie TV"],["18","ABX"],["19","TMC"],["20","Warner TV"],["21","Discovery FR"],["22","TF1 Series Films"],["23","Nat Geo Wild FR"],["24","France 4"],["25","France 5"],["26","Histoire TV"],["27","RTL District"],["28","MTV FR"],
+["29","CSTAR"],["30","Eurosport 1 FR"],["31","Eurosport 2 FR"],["35","DAZN Pro League 1 FR"],["36","DAZN Pro League 2 FR"],["37","DAZN Pro League 3 FR"],["41","Disney Channel FR"],["42","Disney Junior FR"],["43","Nickelodeon FR"],["44","Cartoon Network FR"],["45","Nick Jr FR"],["46","Gulli"],["47","Canal J"],["48","Piwi+"],["49","Cartoonito FR"],["50","Boomerang"],["51","Dreamworks"],["52","Bravo FR"],["53","Mangas"],["54","Warner TV Next"],["55","Comedy Central FR"],["56","Comedie+"],["58","Planète+"],["59","Planète+ Crime"],["60","Planète+ Aventure"],["61","Toute l'histoire"],["62","Discovery ID"],["63","Ushuaia TV"],
+["64","13ème Rue"],["65","Action"],["66","SciFi"],["67","TCM Cinéma"],["70","Mezzo"],["71","Trace Urban"],["72","MCM"],["75","Radio Contact Vision"],["77","RTBF Tipik Vision"],["78","bel RTL vision"],["81","Euronews FR"],["82","France 24"],["83","Euronews EN"],["84","BBC News"],["85","CNN"],["86","Al Jazeera English"],["87","Al Jazeera Int."],["91","LCI"],["96","Trends Z"],["98","KTO"],["102","VRT 1"],["103","VRT Canvas"],["112","Ketnet"],["180","BRF-TV"],["181","ARD"],["182","ZDF"],["191","BBC One"],["192","BBC Two"],["200","Be 1"],["201","Be 1+1h"],["202","Be Series"],["203","Be Ciné"],["204","OCS"],["205","Ciné+ Frisson"],["206","Ciné+ Classic"],["210","Netflix"],["211","Disney+"],["231","TVE"],["241","RTPi"],["251","Al Aoula"],["261","TRT"],["300","VOO Sport World 1"],["301","VOO Sport World 2"],["302","VOO Sport World 3"],["303","Play Sports 1 FR"],["304","Play Sports 2 FR"],["305","Play Sports 1 NL"],["306","Play Sports 2 NL"],["307","DAZN 1 FR"],["308","DAZN 2 FR"],["309","DAZN 3 FR"],["550+","Other Regional Channels"]
+];
+
+const channelsNL = [
+["1","VTM"],["2","VRT 1"],["3","VRT Canvas"],["4","Play"],["5","VTM 2"],["6","Play Fictie"],["7","VTM 3"],["8","VTM 4"],["9","Play Actie"],["10","Discovery VL"],["11","Nat Geo VL"],["12","Ketnet"],["13","Main Local TV Channel"],["14","Nat Geo Wild VL"],["15","Star Channel"],["16","TLC"],["17","Play Reality"],["18","Comedy Central"],["19","VTM Gold"],["21","NPO 1"],["22","NPO 2"],["23","NPO 3"],["24","MTV VL"],["25","VTM SERIES"],["26","njam!"],["27","DOBBIT TV"],["28","PlattelandsTV"],["30","Eurosport 1 NL"],
+["31","Eurosport 2 NL"],["35","DAZN Pro League 1 NL"],["36","DAZN Pro League 2 NL"],["37","DAZN Pro League 3 NL"],["38","Sport 10"],["39","W Sport"],["51","Nick Jr. NL"],["52","Studio 100 TV"],["53","Cartoonito"],["54","Disney channel VL"],["55","Disney JR NL"],["56","Nickelodeon NL"],["57","Cartoon Network NL"],["58","Eclips TV"],["59","OUT TV"],["61","Q-music TV"],["62","MENTpop"],["63","MENT55"],["80","Vlaams Parlement TV"],["83","Euronews EN"],["84","BBC News"],["85","CNN"],["86","Al Jazeera Eng."],["87","Al Jazeera Int."],["97","Trends Z"],["101","RTBF La Une"],["102","RTBF Tipik"],["103","RTBF La Trois"],
+["104","RTL tvI"],["105","RTL club"],["106","RTL plug"],["107","TF1"],["112","Arte Belgique"],["127","RTL District"],["148","Piwi+"],["149","Cartoonito FR"],["150","Boomerang"],["151","Dreamworks"],["152","Bravo FR"],["153","Mangas"],["155","Comedy Central FR"],["156","Comedie+"],["158","Planète+"],["159","Planète+ Crime"],["160","Planète+ Aventure"],["161","Toute l'histoire"],["162","Discovery ID"],["165","Action"],["166","SciFi"],["167","TCM Cinéma"],["170","Mezzo"],["171","Trace Urban"],["181","ARD"],["182","ZDF"],["191","BBC 1"],["192","BBC 2"],["193","BBC First"],["210","Netflix"],["211","Disney+"],["231","TVE"],["241","RTPi"],["251","Al Aoula Europe"],["261","TRT"],["400","Be 1"],["401","Be 1+1h"],["402","Be Series"],["403","Be Ciné"],["404","OCS"],["405","Ciné+ Frisson"],["406","Ciné+ Classic"],["500","VOO Sport World 1"],["501","VOO Sport World 2"],["502","VOO Sport World 3"],["503","Play Sports 1 FR"],["504","Play Sports 2 FR"],["505","Play Sports 1 NL"],["506","Play Sports 2 NL"],["507","DAZN 1 FR"],["508","DAZN 2 FR"],["509","DAZN 3 FR"],["…","Other Regional Channels"]
+];
+
+let channelLang="fr";
+
+function renderChannels(){
+  const list=document.getElementById("channelList");
+  const count=document.getElementById("channelCount");
+  if(!list)return;
+  const data=channelLang==="fr"?channelsFR:channelsNL;
+  const q=(document.getElementById("channelSearch")?.value||"").trim().toLowerCase();
+  const filtered=data.filter(([num,name])=>!q||num.toLowerCase().includes(q)||name.toLowerCase().includes(q));
+  list.innerHTML=filtered.map(([num,name])=>
+    `<div class="channel-row${num.includes("+")||num==="…"?" other":""}">
+      <div class="channel-number">${num}</div><div class="channel-name">${name}</div>
+    </div>`).join("");
+  count.textContent=`${filtered.length} chaîne(s) affichée(s)`;
+}
+
+function setupChannels(){
+  const frBtn=document.getElementById("channelFR"), nlBtn=document.getElementById("channelNL"), search=document.getElementById("channelSearch");
+  if(frBtn)frBtn.onclick=()=>{channelLang="fr";frBtn.classList.add("active");nlBtn.classList.remove("active");renderChannels()};
+  if(nlBtn)nlBtn.onclick=()=>{channelLang="nl";nlBtn.classList.add("active");frBtn.classList.remove("active");renderChannels()};
+  if(search)search.oninput=renderChannels;
+  renderChannels();
+}
+
+const menuBtn=document.getElementById("menuBtn"), sideMenu=document.getElementById("sideMenu"), menuBackdrop=document.getElementById("menuBackdrop");
+function closeMenu(){sideMenu?.classList.remove("open");menuBackdrop?.classList.remove("open")}
+function openMenu(){sideMenu?.classList.add("open");menuBackdrop?.classList.add("open")}
+menuBtn?.addEventListener("click",()=>sideMenu?.classList.contains("open")?closeMenu():openMenu());
+menuBackdrop?.addEventListener("click",closeMenu);
+document.querySelectorAll(".side-item").forEach(b=>b.addEventListener("click",()=>{show(b.dataset.go);closeMenu()}));
+setupChannels();
+renderChannels();
+

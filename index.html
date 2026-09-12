@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#082b4a">
 <title>APK Centre</title>
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css">
 
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" sizes="48x48" href="assets/apk-centre-icon-48.png">
@@ -20,8 +20,16 @@
 <body>
 <header class="topbar">
   <div class="brand"><span class="brandMark">APK</span><span class="brandName">CENTRE</span></div>
-  <button id="menuBtn" class="menu" type="button" aria-label="Ouvrir le menu">☰</button>
+  <button id="menuBtn" class="menu" aria-label="Menu">☰</button>
 </header>
+<nav id="sideMenu" class="side-menu" aria-label="Menu principal">
+  <button class="side-item" data-go="home">🏠 <span>Accueil</span></button>
+  <button class="side-item" data-go="report">📝 <span>Rapport d’intervention</span></button>
+  <button class="side-item" data-go="checklist">☑ <span>Checklist</span></button>
+  <button class="side-item" data-go="info">ⓘ <span>Infos utiles</span></button>
+  <button class="side-item" data-go="channels">📺 <span>Liste des chaînes TV</span></button>
+</nav>
+<div id="menuBackdrop" class="menu-backdrop"></div>
 
 <main id="app">
 <section id="home" class="screen active">
@@ -32,6 +40,7 @@
     <button class="homecard orange" data-go="report"><b>📝</b><strong data-fr="Rapport d’intervention" data-nl="Interventierapport">Rapport d’intervention</strong><small data-fr="Encoder et copier le rapport" data-nl="Rapport invullen en kopiëren">Encoder et copier le rapport</small><i>›</i></button>
     <button class="homecard blue" data-go="checklist"><b>☑</b><strong data-fr="Checklist installation" data-nl="Installatie checklist">Checklist installation</strong><small data-fr="Contrôler chaque étape" data-nl="Elke stap controleren">Contrôler chaque étape</small><i>›</i></button>
     <button class="homecard gray" data-go="info"><b>ⓘ</b><strong data-fr="Infos utiles" data-nl="Nuttige info">Infos utiles</strong><small data-fr="Procédures et mesures de signal" data-nl="Procedures en signaalmetingen">Procédures et mesures de signal</small><i>›</i></button>
+    <button class="homecard tv" data-go="channels"><b>📺</b><strong data-fr="Liste des chaînes TV" data-nl="TV-zenderlijst">Liste des chaînes TV</strong><small data-fr="Orange TV Plus avec TV Streamer" data-nl="Orange TV Plus met TV Streamer">Orange TV Plus avec TV Streamer</small><i>›</i></button>
   </div>
 </section>
 
@@ -45,35 +54,28 @@
   <div id="checkForm"></div><div class="progress"><span id="progressBar"></span></div><p id="progressText"></p>
 </section>
 
-<section id="channels" class="screen">
-  <button class="back">← Accueil</button>
-  <h1>Chaînes du streamer</h1>
-  <p class="screenIntro">Retrouvez ici les chaînes et plateformes du streamer.</p>
-  <div id="channelsContent" class="channels-grid"></div>
-</section>
-
 <section id="info" class="screen">
   <button class="back">← Accueil</button><h1 data-fr="Infos utiles" data-nl="Nuttige info">Infos utiles</h1>
   <input id="search" class="search" placeholder="Rechercher une procédure, mesure, problème…">
   <div id="infoContent"></div>
 </section>
-</main>
 
-<div id="menuBackdrop" class="menuBackdrop"></div>
-<aside id="sideMenu" class="sideMenu" aria-hidden="true">
-  <div class="sideMenuTop">
-    <strong>MENU APK CENTRE</strong>
-    <button id="closeMenu" type="button" aria-label="Fermer">×</button>
+<section id="channels" class="screen">
+  <button class="back">← Accueil</button>
+  <h1 data-fr="Liste des chaînes TV" data-nl="TV-zenderlijst">Liste des chaînes TV</h1>
+  <p class="channels-subtitle" data-fr="Orange TV (Plus) avec TV Streamer" data-nl="Orange TV (Plus) met TV Streamer">Orange TV (Plus) avec TV Streamer</p>
+  <div class="channel-tabs">
+    <button id="channelFR" class="lang active">🇫🇷 Français</button>
+    <button id="channelNL" class="lang">🇳🇱 Nederlands</button>
   </div>
-  <button class="menuItem" data-menu-go="home">🏠 <span>Accueil</span></button>
-  <button class="menuItem" data-menu-go="report">📝 <span>Rapport d’intervention</span></button>
-  <button class="menuItem" data-menu-go="checklist">☑️ <span>Checklist installation</span></button>
-  <button class="menuItem menuItemChannels" data-menu-go="channels">📺 <span>Chaînes du streamer</span></button>
-  <button class="menuItem" data-menu-go="info">ⓘ <span>Infos utiles</span></button>
-</aside>
+  <input id="channelSearch" class="search" placeholder="Rechercher une chaîne ou un numéro…">
+  <div id="channelCount" class="channel-count"></div>
+  <div id="channelList" class="channel-list"></div>
+</section>
+</main>
 <footer>© 2026 APK Centre</footer>
 <div id="toast"></div>
-<script src="script.js?v=6"></script>
+<script src="script.js?v=7"></script>
 <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./service-worker.js");</script>
 </body>
 </html>

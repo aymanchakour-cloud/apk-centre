@@ -19,3 +19,7 @@ L'icône APK Centre est intégrée via `manifest.webmanifest` et peut être util
 
 ## Icône
 L’icône APK Centre utilise le visuel fourni et est configurée pour favicon, iOS et PWA Android.
+
+
+## Liste des chaînes TV
+Le menu APK Centre contient la liste des chaînes Orange TV (Plus) avec TV Streamer, en versions FR et NL, avec recherche par numéro ou nom.
