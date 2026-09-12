@@ -13,3 +13,35 @@
 .streamer-name{padding:11px 12px;font-weight:600}
 .streamer-row.other .streamer-number{font-size:12px}
 @media(min-width:700px){.streamer-list{grid-template-columns:repeat(2,1fr)}}
+
+
+/* NOUVEL ACCUEIL APK CENTRE */
+.home-hero{text-align:center;padding:18px 0 20px;position:relative}
+.home-logo{width:142px;height:142px;object-fit:contain;display:block;margin:0 auto 8px;filter:drop-shadow(0 8px 14px #0002)}
+.home-title{font-size:14px;font-weight:900;letter-spacing:4px;color:#e30613;margin-bottom:6px}
+.home-title span{color:#102f49}
+.home-hero h1{font-size:30px;margin:6px 0 5px;color:#102f49}
+.home-hero p{font-size:16px;color:#68727c;margin:0 0 16px}
+.home-hero .langs{gap:8px}
+.home-hero .lang{font-weight:700;cursor:pointer}
+.quick-title{max-width:650px;margin:4px auto 12px;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:#68727c}
+.homecards{max-width:650px;grid-template-columns:1fr 1fr;gap:14px}
+.homecard{min-height:128px;padding:18px 44px 18px 18px;border-top:0;border-left:6px solid;display:flex;align-items:center;gap:14px;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.homecard:hover{transform:translateY(-2px);box-shadow:0 8px 20px #0002}
+.homecard:active{transform:scale(.985)}
+.homecard .card-icon{font-size:36px;line-height:1;flex:none}
+.homecard .card-copy{min-width:0}
+.homecard strong{font-size:18px;line-height:1.2}
+.homecard small{font-size:13px;line-height:1.35}
+.homecard i{right:13px;font-style:normal;color:#68727c}
+.homecard.orange{border-color:#f45124}.homecard.blue{border-color:#0b78d0}.homecard.gray{border-color:#777}.homecard.streamer{border-color:#e30613}
+footer{height:auto;min-height:58px;padding:10px 16px;gap:5px;flex-direction:column}
+@media(max-width:560px){
+  main{padding-top:12px}
+  .home-logo{width:118px;height:118px}
+  .home-hero h1{font-size:25px}
+  .homecards{grid-template-columns:1fr;gap:11px}
+  .homecard{min-height:92px;padding:14px 42px 14px 16px}
+  .homecard .card-icon{font-size:32px}
+  .homecard strong{font-size:17px}
+}
