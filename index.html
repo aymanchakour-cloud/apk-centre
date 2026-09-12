@@ -29,6 +29,7 @@
     <div class="langs"><button id="nl" class="lang">Nederlands</button><button id="fr" class="lang active">Français</button></div>
   </div>
   <div class="homecards">
+    <button class="homecard purple" data-go="channels"><b>📺</b><strong data-fr="Chaînes du streamer" data-nl="Kanalen van de streamer">Chaînes du streamer</strong><small data-fr="Retrouver les chaînes et plateformes" data-nl="Kanalen en platformen bekijken">Retrouver les chaînes et plateformes</small><i>›</i></button>
     <button class="homecard orange" data-go="report"><b>📝</b><strong data-fr="Rapport d’intervention" data-nl="Interventierapport">Rapport d’intervention</strong><small data-fr="Encoder et copier le rapport" data-nl="Rapport invullen en kopiëren">Encoder et copier le rapport</small><i>›</i></button>
     <button class="homecard blue" data-go="checklist"><b>☑</b><strong data-fr="Checklist installation" data-nl="Installatie checklist">Checklist installation</strong><small data-fr="Contrôler chaque étape" data-nl="Elke stap controleren">Contrôler chaque étape</small><i>›</i></button>
     <button class="homecard gray" data-go="info"><b>ⓘ</b><strong data-fr="Infos utiles" data-nl="Nuttige info">Infos utiles</strong><small data-fr="Procédures et mesures de signal" data-nl="Procedures en signaalmetingen">Procédures et mesures de signal</small><i>›</i></button>
@@ -45,13 +46,29 @@
   <div id="checkForm"></div><div class="progress"><span id="progressBar"></span></div><p id="progressText"></p>
 </section>
 
+<section id="channels" class="screen">
+  <button class="back">← Accueil</button>
+  <h1 data-fr="Chaînes du streamer" data-nl="Kanalen van de streamer">Chaînes du streamer</h1>
+  <p class="screenIntro" data-fr="Retrouvez ici les différentes chaînes et plateformes du streamer." data-nl="Hier vindt u de verschillende kanalen en platformen van de streamer.">Retrouvez ici les différentes chaînes et plateformes du streamer.</p>
+  <div id="channelsContent" class="channels-grid"></div>
+</section>
+
 <section id="info" class="screen">
   <button class="back">← Accueil</button><h1 data-fr="Infos utiles" data-nl="Nuttige info">Infos utiles</h1>
   <input id="search" class="search" placeholder="Rechercher une procédure, mesure, problème…">
   <div id="infoContent"></div>
 </section>
 </main>
-<footer>© 2026 APK Centre</footer>
+<div id="menuBackdrop" class="menuBackdrop"></div>
+<aside id="sideMenu" class="sideMenu" aria-hidden="true">
+  <div class="sideMenuHeader"><strong>APK CENTRE</strong><button id="closeMenu" class="closeMenu" aria-label="Fermer">×</button></div>
+  <button class="menuLink" data-menu-go="home">⌂ <span>Accueil</span></button>
+  <button class="menuLink" data-menu-go="report">📝 <span>Rapport d’intervention</span></button>
+  <button class="menuLink" data-menu-go="checklist">☑ <span>Checklist installation</span></button>
+  <button class="menuLink" data-menu-go="channels">📺 <span>Chaînes du streamer</span></button>
+  <button class="menuLink" data-menu-go="info">ⓘ <span>Infos utiles</span></button>
+</aside>
+<footer>© 2026 APK Centre — by Chakour ayman</footer>
 <div id="toast"></div>
 <script src="script.js?v=3"></script>
 <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./service-worker.js");</script>

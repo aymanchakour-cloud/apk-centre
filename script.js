@@ -1,5 +1,12 @@
-let lang="fr";const screens=["home","report","checklist","info"];
+let lang="fr";const screens=["home","report","checklist","channels","info"];
 const fr={};const nl={};
+const channels=[
+ {name:"YouTube",icon:"▶",url:"https://www.youtube.com/",desc:"Vidéos et contenus"},
+ {name:"Twitch",icon:"T",url:"https://www.twitch.tv/",desc:"Lives et rediffusions"},
+ {name:"TikTok",icon:"♪",url:"https://www.tiktok.com/",desc:"Clips et vidéos courtes"},
+ {name:"Instagram",icon:"◎",url:"https://www.instagram.com/",desc:"Actualités et publications"},
+ {name:"Facebook",icon:"f",url:"https://www.facebook.com/",desc:"Page et directs"}
+];
 const reportGroups=[
 ["Statut de l’intervention",["Installation OK","Annulation","Réparation","Site survey"]],
 ["Installation / matériel",["Modem fixé","Modem non fixé","TV box","ATA box","Test de vitesse effectué","Booster","Client ne souhaite pas de booster","Le client possède son propre réseau (sans fil)","Dropcâble installé","Câble drop installé sans percement.","Câble temporaire placé NIU → boîtier TV","Client VIP/B2B, Airbox ok","Problème d’activation"]],
@@ -53,7 +60,21 @@ const infoSections=[
 function show(id){screens.forEach(s=>document.getElementById(s).classList.toggle("active",s===id));window.scrollTo(0,0)}
 document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>show(b.dataset.go));
 document.querySelectorAll(".back").forEach(b=>b.onclick=()=>show("home"));
-function setLang(x){lang=x;document.querySelectorAll(".lang").forEach(b=>b.classList.toggle("active",b.id===x));document.querySelectorAll("[data-fr]").forEach(e=>e.textContent=e.dataset[x]);renderReport();renderChecklist();renderInfo();}
+const sideMenu=document.getElementById("sideMenu");
+const menuBackdrop=document.getElementById("menuBackdrop");
+function openMenu(){sideMenu.classList.add("open");menuBackdrop.classList.add("open");sideMenu.setAttribute("aria-hidden","false");}
+function closeMenu(){sideMenu.classList.remove("open");menuBackdrop.classList.remove("open");sideMenu.setAttribute("aria-hidden","true");}
+document.getElementById("menuBtn").onclick=openMenu;
+document.getElementById("closeMenu").onclick=closeMenu;
+menuBackdrop.onclick=closeMenu;
+document.querySelectorAll("[data-menu-go]").forEach(b=>b.onclick=()=>{show(b.dataset.menuGo);closeMenu();});
+
+function renderChannels(){
+ const el=document.getElementById("channelsContent"); if(!el)return;
+ el.innerHTML=channels.map(c=>`<a class="channel-card" href="${c.url}" target="_blank" rel="noopener noreferrer"><span class="channel-icon">${c.icon}</span><span class="channel-text"><strong>${c.name}</strong><small>${c.desc}</small></span><span class="channel-arrow">›</span></a>`).join("");
+}
+
+function setLang(x){lang=x;document.querySelectorAll(".lang").forEach(b=>b.classList.toggle("active",b.id===x));document.querySelectorAll("[data-fr]").forEach(e=>e.textContent=e.dataset[x]);renderReport();renderChecklist();renderChannels();renderInfo();}
 document.getElementById("fr").onclick=()=>setLang("fr");document.getElementById("nl").onclick=()=>setLang("nl");
 
 function renderReport(){
@@ -88,4 +109,4 @@ document.getElementById("copyReport").onclick=async()=>{
   }
 };
 function toast(t){let x=document.getElementById("toast");x.textContent=t;x.style.display="block";setTimeout(()=>x.style.display="none",1800)}
-renderReport();renderChecklist();renderInfo();
+renderReport();renderChecklist();renderChannels();renderInfo();
